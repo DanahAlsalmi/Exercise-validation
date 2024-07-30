@@ -34,7 +34,7 @@ public class EventController {
 
     //Update
     @PutMapping("/update/{id}")
-    public ResponseEntity updateEvent(@Valid @PathVariable int id,@Valid @RequestBody Event event, Errors errors){
+    public ResponseEntity updateEvent(@PathVariable int id,@Valid @RequestBody Event event, Errors errors){
         if (errors.hasErrors()) {
             String message=errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(400).body(message);
@@ -51,7 +51,7 @@ public class EventController {
 
     //Delete
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteEvent(@Valid @PathVariable int id){
+    public ResponseEntity deleteEvent(@PathVariable int id){
         for(int i=0; i<events.size(); i++){
             if(events.get(i).getId()==id){
                 events.remove(i);
@@ -63,7 +63,7 @@ public class EventController {
 
     //Change Capacity
     @PutMapping("/change-capacity/{id}/{capacity}")
-    public ResponseEntity changeEventCapacity(@PathVariable int id, @Valid @PathVariable int capacity){
+    public ResponseEntity changeEventCapacity(@PathVariable int id,@PathVariable int capacity){
 //        for(int i=0; i<events.size(); i++){
 //            if(events.get(i).getId()==id){
 //                events.get(i).setCapacity(capacity);
