@@ -33,7 +33,7 @@ public class ProjectController {
 
     //Update
     @PutMapping("/update/{id}")
-    public ResponseEntity updateProject(@Valid @PathVariable int id, @Valid @RequestBody Project project, Errors errors) {
+    public ResponseEntity updateProject(@PathVariable int id, @Valid @RequestBody Project project, Errors errors) {
         if (errors.hasErrors()) {
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(400).body(message);
@@ -62,7 +62,7 @@ public class ProjectController {
 
     //Change status
     @PutMapping("/change-status/{id}")
-    public ResponseEntity changeStatus(@Valid @PathVariable int id) {
+    public ResponseEntity changeStatus(@PathVariable int id) {
 
         for (Project project : projects) {
             if (project.getId() == id) {
